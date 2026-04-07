@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  width: 100%; height: 100vh;
+  background: #0e0e12; display: flex; flex-direction: column; overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 13px; color: #e8e8ee; line-height: 1.5; -webkit-font-smoothing: antialiased;
+}
+.hdr { padding: 14px 16px 0; border-bottom: 1px solid #2a2a38; flex-shrink: 0; }
+.ht { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.ht b { font-weight: 700; font-size: 15px; letter-spacing: -.02em; }
+.ht em { font-style: normal; font-size: 10px; color: #606078; background: #1e1e28; padding: 2px 7px; border-radius: 20px; }
+.tabs { display: flex; }
+.T { flex: 1; background: none; border: none; color: #606078; font-family: inherit; font-size: 12.5px; font-weight: 600; padding: 10px 0; cursor: pointer; border-bottom: 2px solid transparent; }
+.T:hover { color: #9090a8; }
+.T.on { color: #7B6FF0; border-bottom-color: #7B6FF0; }
+.bd { flex: 1; overflow-y: auto; padding: 16px; }
+.bd::-webkit-scrollbar { width: 5px; }
+.bd::-webkit-scrollbar-thumb { background: #2a2a38; border-radius: 10px; }
+.pn { display: none; } .pn.on { display: block; }
+.bn { display: flex; align-items: center; gap: 8px; padding: 10px 12px; border-radius: 10px; font-size: 12px; margin-bottom: 14px; }
+.bw { background: rgba(255,180,67,.08); color: #FFB443; border: 1px solid rgba(255,180,67,.15); }
+.bo { background: rgba(62,207,180,.08); color: #3ECFB4; border: 1px solid rgba(62,207,180,.15); }
+.lb { display: block; font-size: 11.5px; font-weight: 600; color: #9090a8; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 6px; }
+.ip { width: 100%; padding: 10px 12px; background: #16161d; border: 1px solid #2a2a38; border-radius: 6px; color: #e8e8ee; font-family: monospace; font-size: 12px; outline: none; }
+.ip::placeholder { color: #606078; font-family: -apple-system, sans-serif; }
+.ip:focus { border-color: #7B6FF0; }
+.gr { margin-bottom: 16px; }
+.bt { width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 16px; background: #7B6FF0; color: #fff; border: none; border-radius: 10px; font-family: inherit; font-size: 13.5px; font-weight: 600; cursor: pointer; transition: all .2s; }
+.bt:hover:not(:disabled) { background: #9085f5; }
+.bt:disabled { opacity: .4; cursor: not-allowed; }
+.bt2 { display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; background: #1e1e28; color: #9090a8; border: 1px solid #2a2a38; border-radius: 6px; font-family: inherit; font-size: 12px; cursor: pointer; }
+.bt2:hover { background: #252530; color: #e8e8ee; }
+.bts { width: auto; padding: 8px 16px; font-size: 12px; }
+.btd { padding: 8px 16px; background: rgba(255,92,124,.08); color: #FF5C7C; border: 1px solid rgba(255,92,124,.2); border-radius: 6px; font-family: inherit; font-size: 12px; cursor: pointer; }
+.ld { text-align: center; padding: 28px 0; }
+.sp { width: 32px; height: 32px; border: 3px solid #1e1e28; border-top-color: #7B6FF0; border-radius: 50%; animation: sp .8s linear infinite; margin: 0 auto 12px; }
+@keyframes sp { to { transform: rotate(360deg); } }
+.ld p { font-size: 13px; font-weight: 500; }
+.ld small { font-size: 11px; color: #606078; display: block; margin-top: 4px; }
+.sr { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; padding: 16px; background: #16161d; border-radius: 12px; border: 1px solid #2a2a38; }
+.sn { font-size: 36px; font-weight: 700; letter-spacing: -.03em; min-width: 60px; text-align: center; }
+.si { flex: 1; } .si p { font-size: 13px; color: #9090a8; line-height: 1.5; }
+.fb { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+.F { padding: 4px 10px; background: #16161d; border: 1px solid #2a2a38; border-radius: 20px; font-family: inherit; font-size: 11px; color: #606078; cursor: pointer; }
+.F:hover { color: #9090a8; } .F.on { color: #7B6FF0; border-color: #7B6FF0; background: rgba(123,111,240,.08); }
+.rc-list { display: flex; flex-direction: column; gap: 8px; }
+.rc-card { background: #16161d; border: 1px solid #2a2a38; border-radius: 10px; padding: 12px; cursor: pointer; transition: all .15s; }
+.rc-card:hover { border-color: #7B6FF0; background: #1a1a24; }
+.rc-card.active { border-color: #FF5C7C; box-shadow: 0 0 0 1px #FF5C7C; }
+.rc-el { font-size: 12.5px; font-weight: 600; color: #e8e8ee; margin-bottom: 6px; word-wrap: break-word; overflow-wrap: break-word; line-height: 1.4; }
+.rc-prop { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
+.rc-prop .tg { flex-shrink: 0; }
+.rc-prop span { font-size: 12px; color: #9090a8; font-weight: 500; }
+.rc-vals { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
+.rc-val { background: #0e0e12; border-radius: 6px; padding: 8px; }
+.rc-val-label { font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: #606078; margin-bottom: 3px; }
+.rc-val-v { font-family: monospace; font-size: 11px; word-break: break-all; }
+.rc-val-v.figma { color: #7B6FF0; }
+.rc-val-v.live { color: #FF5C7C; }
+.cw { display: inline-block; width: 10px; height: 10px; border-radius: 2px; border: 1px solid rgba(255,255,255,.15); vertical-align: middle; margin-right: 3px; }
+.eb { display: flex; gap: 8px; margin-top: 12px; padding-top: 12px; border-top: 1px solid #2a2a38; }
+.em { text-align: center; padding: 48px 16px; color: #606078; }
+.sc { padding-bottom: 20px; margin-bottom: 20px; border-bottom: 1px solid #2a2a38; }
+.sc:last-child { border-bottom: none; }
+.sh { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+.sa { display: flex; gap: 10px; margin-top: 10px; }
+.tw { position: relative; }
+.tw .ip { padding-right: 42px; }
+.te { position: absolute; right: 4px; top: 50%; transform: translateY(-50%); width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; background: transparent; border: none; color: #606078; cursor: pointer; border-radius: 6px; }
+.te:hover { background: #1e1e28; }
+.gu { background: #16161d; border: 1px solid #2a2a38; border-radius: 10px; padding: 14px; font-size: 12px; color: #9090a8; line-height: 1.7; }
+.gu strong { color: #e8e8ee; }
+.gu ol { padding-left: 18px; margin-top: 8px; }
+.gu li { margin-bottom: 6px; }
+.to { position: fixed; bottom: 16px; left: 16px; right: 16px; padding: 10px 14px; border-radius: 8px; font-size: 12px; font-weight: 500; color: #fff; z-index: 9999; transition: opacity .3s; }
+.tg { display: inline-block; font-size: 9px; font-weight: 600; text-transform: uppercase; padding: 2px 5px; border-radius: 3px; margin-right: 4px; }
+.tc { background: rgba(255,106,194,.12); color: #FF6AC2; }
+.tt { background: rgba(91,168,255,.12); color: #5BA8FF; }
+.tp { background: rgba(62,207,180,.12); color: #3ECFB4; }
+.tl { background: rgba(255,180,67,.12); color: #FFB443; }
+.tbr { background: rgba(255,92,124,.12); color: #FF5C7C; }
+.tfx { background: rgba(168,130,255,.12); color: #A882FF; }
+.tcn { background: rgba(255,200,100,.12); color: #FFC864; }
+.tsa { background: rgba(100,200,255,.12); color: #64C8FF; }
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="ht">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="1" y="1" width="8" height="8" rx="1.5" fill="#7B6FF0"/><rect x="11" y="1" width="8" height="8" rx="1.5" fill="#FF6AC2"/><rect x="1" y="11" width="8" height="8" rx="1.5" fill="#3ECFB4"/><rect x="11" y="11" width="8" height="8" rx="4" fill="#FFB443"/></svg>
+    <b>FigmaScan</b><em>v6</em>
+  </div>
+  <div class="tabs" id="tabBar">
+    <button class="T on" data-tab="a">Analiz</button>
+    <button class="T" data-tab="r">Sonuçlar</button>
+    <button class="T" data-tab="s">Ayarlar</button>
+  </div>
+</div>
+
+<div class="bd">
+  <div class="pn on" id="pa">
+    <div id="tw" class="bn bw" style="display:none">Token eksik. <a style="color:inherit;font-weight:600;cursor:pointer;text-decoration:underline" id="goS">Ayarlar'a git →</a></div>
+    <div id="to" class="bn bo" style="display:none">✓ Figma + Gemini bağlı</div>
+    <div class="gr">
+      <label class="lb">Figma Frame Linki</label>
+      <input type="text" id="fl" class="ip" placeholder="https://www.figma.com/design/ABC.../...?node-id=X-Y"/>
+    </div>
+    <button class="bt" id="go" disabled>
+      <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="6" r="4.5" stroke="white" stroke-width="1.5"/><line x1="9.5" y1="9.5" x2="13.5" y2="13.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+      Karşılaştır
+    </button>
+    <div id="ld" class="ld" style="display:none"><div class="sp"></div><p id="lm">Hazırlanıyor...</p><small id="ls"></small></div>
+
+    <div class="gu" style="margin-top:28px">
+      <p style="font-size:13px;font-weight:700;color:#e8e8ee;margin-bottom:10px;">Nasıl Çalışır?</p>
+      <ol>
+        <li>Figma'da karşılaştırmak istediğiniz frame'i seçin</li>
+        <li>Sağ tık → <strong>Copy link</strong></li>
+        <li>Canlı web sayfasını Chrome'da açın</li>
+        <li>Analiz sekmesine linki yapıştırıp <strong>"Karşılaştır"</strong> butonuna basın</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="pn" id="pr">
+    <div id="nr" class="em"><p>Henüz sonuç yok.</p><p style="font-size:11px;margin-top:4px">Analiz sekmesinden karşılaştırma başlatın.</p></div>
+    <div id="rc" style="display:none"></div>
+  </div>
+
+  <div class="pn" id="ps">
+    <div class="sc">
+      <div class="gr">
+        <label class="lb">Figma Access Token</label>
+        <div class="tw">
+          <input type="password" id="fi" class="ip" placeholder="figd_xxxxxxxxxxxxxxxx"/>
+          <button class="te" id="fe"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 3C4.5 3 2.3 4.5 1 7c1.3 2.5 3.5 4 6 4s4.7-1.5 6-4c-1.3-2.5-3.5-4-6-4z" stroke="#606078" stroke-width="1.2"/><circle cx="7" cy="7" r="2" stroke="#606078" stroke-width="1.2"/></svg></button>
+        </div>
+      </div>
+      <div class="sa"><button class="bt bts" id="fs">Kaydet</button><button class="btd" id="fd">Sil</button></div>
+      <div id="fst" class="bn bw" style="display:none;margin-top:10px">—</div>
+    </div>
+    <div class="sc">
+      <div class="gr">
+        <label class="lb">Gemini API Key</label>
+        <div class="tw">
+          <input type="password" id="gi" class="ip" placeholder="AIzaSy..."/>
+          <button class="te" id="ge"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 3C4.5 3 2.3 4.5 1 7c1.3 2.5 3.5 4 6 4s4.7-1.5 6-4c-1.3-2.5-3.5-4-6-4z" stroke="#606078" stroke-width="1.2"/><circle cx="7" cy="7" r="2" stroke="#606078" stroke-width="1.2"/></svg></button>
+        </div>
+      </div>
+      <div class="sa"><button class="bt bts" id="gs">Kaydet</button><button class="btd" id="gd">Sil</button></div>
+      <div id="gst" class="bn bw" style="display:none;margin-top:10px">—</div>
+    </div>
+  </div>
+</div>
+
+<script src="sidepanel.js"></script>
+</body>
+</html>
