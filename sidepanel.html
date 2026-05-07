@@ -10,18 +10,13 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: 13px; color: #e8e8ee; line-height: 1.5; -webkit-font-smoothing: antialiased;
 }
-.hdr { padding: 14px 16px 0; border-bottom: 1px solid #2a2a38; flex-shrink: 0; }
-.ht { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.hdr { padding: 14px 16px 12px; border-bottom: 1px solid #2a2a38; flex-shrink: 0; }
+.ht { display: flex; align-items: center; gap: 10px; }
 .ht b { font-weight: 700; font-size: 15px; letter-spacing: -.02em; }
-.ht em { font-style: normal; font-size: 10px; color: #606078; background: #1e1e28; padding: 2px 7px; border-radius: 20px; }
-.tabs { display: flex; }
-.T { flex: 1; background: none; border: none; color: #606078; font-family: inherit; font-size: 12.5px; font-weight: 600; padding: 10px 0; cursor: pointer; border-bottom: 2px solid transparent; }
-.T:hover { color: #9090a8; }
-.T.on { color: #7B6FF0; border-bottom-color: #7B6FF0; }
 .bd { flex: 1; overflow-y: auto; padding: 16px; }
 .bd::-webkit-scrollbar { width: 5px; }
 .bd::-webkit-scrollbar-thumb { background: #2a2a38; border-radius: 10px; }
-.pn { display: none; } .pn.on { display: block; }
+.analyze-section { margin-bottom: 16px; }
 .bn { display: flex; align-items: center; gap: 8px; padding: 10px 12px; border-radius: 10px; font-size: 12px; margin-bottom: 14px; }
 .bw { background: rgba(255,180,67,.08); color: #FFB443; border: 1px solid rgba(255,180,67,.15); }
 .bo { background: rgba(62,207,180,.08); color: #3ECFB4; border: 1px solid rgba(62,207,180,.15); }
@@ -29,19 +24,19 @@ body {
 .ip { width: 100%; padding: 10px 12px; background: #16161d; border: 1px solid #2a2a38; border-radius: 6px; color: #e8e8ee; font-family: monospace; font-size: 12px; outline: none; }
 .ip::placeholder { color: #606078; font-family: -apple-system, sans-serif; }
 .ip:focus { border-color: #7B6FF0; }
-.gr { margin-bottom: 16px; }
+.gr { margin-bottom: 12px; }
 .bt { width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 16px; background: #7B6FF0; color: #fff; border: none; border-radius: 10px; font-family: inherit; font-size: 13.5px; font-weight: 600; cursor: pointer; transition: all .2s; }
 .bt:hover:not(:disabled) { background: #9085f5; }
 .bt:disabled { opacity: .4; cursor: not-allowed; }
 .bt2 { display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; background: #1e1e28; color: #9090a8; border: 1px solid #2a2a38; border-radius: 6px; font-family: inherit; font-size: 12px; cursor: pointer; }
 .bt2:hover { background: #252530; color: #e8e8ee; }
-.bts { width: auto; padding: 8px 16px; font-size: 12px; }
-.btd { padding: 8px 16px; background: rgba(255,92,124,.08); color: #FF5C7C; border: 1px solid rgba(255,92,124,.2); border-radius: 6px; font-family: inherit; font-size: 12px; cursor: pointer; }
-.ld { text-align: center; padding: 28px 0; }
+.ld { text-align: center; padding: 20px 0; }
 .sp { width: 32px; height: 32px; border: 3px solid #1e1e28; border-top-color: #7B6FF0; border-radius: 50%; animation: sp .8s linear infinite; margin: 0 auto 12px; }
 @keyframes sp { to { transform: rotate(360deg); } }
 .ld p { font-size: 13px; font-weight: 500; }
 .ld small { font-size: 11px; color: #606078; display: block; margin-top: 4px; }
+.results-section { display: none; }
+.results-section.on { display: block; }
 .sr { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; padding: 16px; background: #16161d; border-radius: 12px; border: 1px solid #2a2a38; }
 .sn { font-size: 36px; font-weight: 700; letter-spacing: -.03em; min-width: 60px; text-align: center; }
 .si { flex: 1; } .si p { font-size: 13px; color: #9090a8; line-height: 1.5; }
@@ -65,14 +60,6 @@ body {
 .cw { display: inline-block; width: 10px; height: 10px; border-radius: 2px; border: 1px solid rgba(255,255,255,.15); vertical-align: middle; margin-right: 3px; }
 .eb { display: flex; gap: 8px; margin-top: 12px; padding-top: 12px; border-top: 1px solid #2a2a38; }
 .em { text-align: center; padding: 48px 16px; color: #606078; }
-.sc { padding-bottom: 20px; margin-bottom: 20px; border-bottom: 1px solid #2a2a38; }
-.sc:last-child { border-bottom: none; }
-.sh { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
-.sa { display: flex; gap: 10px; margin-top: 10px; }
-.tw { position: relative; }
-.tw .ip { padding-right: 42px; }
-.te { position: absolute; right: 4px; top: 50%; transform: translateY(-50%); width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; background: transparent; border: none; color: #606078; cursor: pointer; border-radius: 6px; }
-.te:hover { background: #1e1e28; }
 .gu { background: #16161d; border: 1px solid #2a2a38; border-radius: 10px; padding: 14px; font-size: 12px; color: #9090a8; line-height: 1.7; }
 .gu strong { color: #e8e8ee; }
 .gu ol { padding-left: 18px; margin-top: 8px; }
@@ -87,76 +74,100 @@ body {
 .tfx { background: rgba(168,130,255,.12); color: #A882FF; }
 .tcn { background: rgba(255,200,100,.12); color: #FFC864; }
 .tsa { background: rgba(100,200,255,.12); color: #64C8FF; }
+.sep { height: 1px; background: #2a2a38; margin: 16px 0; }
+/* ═══ Checkbox - checked card stilleri ═══ */
+.rc-card.checked, .vc-card.checked { opacity: .55; order: 999; }
+.rc-card.checked .rc-el, .rc-card.checked .rc-prop span, .rc-card.checked .rc-val-v,
+.vc-card.checked .vc-name, .vc-card.checked .vc-meta { text-decoration: line-through; text-decoration-color: #606078; }
+.rc-card.checked .rc-el, .vc-card.checked .vc-name { color: #606078; }
+.card-check { display: flex; align-items: center; gap: 7px; margin-bottom: 8px; cursor: pointer; font-size: 11px; color: #606078; -webkit-user-select: none; user-select: none; }
+.card-check input[type="checkbox"] { width: 14px; height: 14px; accent-color: #7B6FF0; cursor: pointer; flex-shrink: 0; }
+/* ═══ YENİ: Görsel karşılaştırma kart stilleri ═══ */
+.vc-card { background: #16161d; border: 1px solid #2a2a38; border-radius: 10px; padding: 12px; margin-bottom: 10px; }
+.vc-name { font-size: 12.5px; font-weight: 600; color: #e8e8ee; margin-bottom: 4px; }
+.vc-meta { font-size: 11px; color: #606078; margin-bottom: 10px; }
+.vc-imgs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px; }
+.vc-img-box { background: #0e0e12; border-radius: 6px; padding: 6px; text-align: center; }
+.vc-img-box img { max-width: 100%; max-height: 120px; border-radius: 4px; display: block; margin: 0 auto; image-rendering: -webkit-optimize-contrast; }
+.vc-img-label { font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: #606078; margin-bottom: 4px; }
+.vc-sim { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 10px; }
+.vc-sim.high { background: rgba(62,207,180,.12); color: #3ECFB4; }
+.vc-sim.med { background: rgba(255,180,67,.12); color: #FFB443; }
+.vc-sim.low { background: rgba(255,92,124,.12); color: #FF5C7C; }
+.vc-overlay-wrap { display: none; margin-top: 8px; }
+.vc-overlay-wrap.open { display: block; }
+.vc-overlay-box { background: #0e0e12; border-radius: 6px; padding: 8px; text-align: center; }
+.vc-overlay-box img { max-width: 100%; max-height: 160px; border-radius: 4px; }
+.vc-toggle { background: none; border: 1px solid #2a2a38; color: #9090a8; font-family: inherit; font-size: 11px; padding: 4px 10px; border-radius: 6px; cursor: pointer; margin-top: 6px; }
+.vc-toggle:hover { color: #e8e8ee; border-color: #7B6FF0; }
+.F.loading { opacity: .5; pointer-events: none; }
+/* ═══ Login ekranı ═══ */
+.login-overlay { position: fixed; inset: 0; background: #0e0e12; z-index: 10000; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; }
+.login-overlay.hidden { display: none; }
+.login-box { width: 100%; max-width: 300px; }
+.login-logo { text-align: center; margin-bottom: 24px; }
+.login-logo b { font-size: 18px; font-weight: 700; color: #e8e8ee; }
+.login-logo p { font-size: 11px; color: #606078; margin-top: 4px; }
+.login-err { background: rgba(255,92,124,.1); color: #FF5C7C; border: 1px solid rgba(255,92,124,.2); padding: 8px 12px; border-radius: 8px; font-size: 12px; margin-bottom: 12px; display: none; }
+.login-err.show { display: block; }
+.logout-btn { background: none; border: 1px solid #2a2a38; color: #606078; font-family: inherit; font-size: 10px; padding: 3px 10px; border-radius: 4px; cursor: pointer; margin-left: auto; }
+.logout-btn:hover { color: #FF5C7C; border-color: #FF5C7C; }
 </style>
 </head>
 <body>
 
+<!-- ═══ Login Ekranı ═══ -->
+<div class="login-overlay" id="loginOverlay">
+  <div class="login-box">
+    <div class="login-logo">
+      <svg width="32" height="32" viewBox="0 0 20 20" fill="none"><rect x="1" y="1" width="8" height="8" rx="1.5" fill="#7B6FF0"/><rect x="11" y="1" width="8" height="8" rx="1.5" fill="#FF6AC2"/><rect x="1" y="11" width="8" height="8" rx="1.5" fill="#3ECFB4"/><rect x="11" y="11" width="8" height="8" rx="4" fill="#FFB443"/></svg>
+      <br/><b>FigmaScan</b>
+      <p>Devam etmek için giriş yapın</p>
+    </div>
+    <div class="login-err" id="loginErr"></div>
+    <div class="gr">
+      <label class="lb">E-posta</label>
+      <input type="email" id="loginEmail" class="ip" placeholder="isim@kariyer.net"/>
+    </div>
+    <div class="gr">
+      <label class="lb">Şifre</label>
+      <input type="password" id="loginPass" class="ip" placeholder="Şifrenizi girin"/>
+    </div>
+    <button class="bt" id="loginBtn">Giriş Yap</button>
+  </div>
+</div>
+
 <div class="hdr">
   <div class="ht">
     <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="1" y="1" width="8" height="8" rx="1.5" fill="#7B6FF0"/><rect x="11" y="1" width="8" height="8" rx="1.5" fill="#FF6AC2"/><rect x="1" y="11" width="8" height="8" rx="1.5" fill="#3ECFB4"/><rect x="11" y="11" width="8" height="8" rx="4" fill="#FFB443"/></svg>
-    <b>FigmaScan</b><em>v6</em>
-  </div>
-  <div class="tabs" id="tabBar">
-    <button class="T on" data-tab="a">Analiz</button>
-    <button class="T" data-tab="r">Sonuçlar</button>
-    <button class="T" data-tab="s">Ayarlar</button>
+    <b>FigmaScan</b>
+    <button class="logout-btn" id="logoutBtn">Çıkış</button>
   </div>
 </div>
 
 <div class="bd">
-  <div class="pn on" id="pa">
-    <div id="tw" class="bn bw" style="display:none">Token eksik. <a style="color:inherit;font-weight:600;cursor:pointer;text-decoration:underline" id="goS">Ayarlar'a git →</a></div>
-    <div id="to" class="bn bo" style="display:none">✓ Figma + Gemini bağlı</div>
+  <div class="analyze-section">
+    <div id="tw" class="bn bw" style="display:none">⚠ API bağlantısı kurulamadı — yöneticinize başvurun</div>
     <div class="gr">
       <label class="lb">Figma Frame Linki</label>
       <input type="text" id="fl" class="ip" placeholder="https://www.figma.com/design/ABC.../...?node-id=X-Y"/>
     </div>
     <button class="bt" id="go" disabled>
-      <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="6" r="4.5" stroke="white" stroke-width="1.5"/><line x1="9.5" y1="9.5" x2="13.5" y2="13.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><circle cx="6" cy="6" r="4.5" stroke="white" stroke-width="1.5"/><line x1="9.5" y1="9.5" x2="13.5" y2="13.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
       Karşılaştır
     </button>
     <div id="ld" class="ld" style="display:none"><div class="sp"></div><p id="lm">Hazırlanıyor...</p><small id="ls"></small></div>
-
-    <div class="gu" style="margin-top:28px">
-      <p style="font-size:13px;font-weight:700;color:#e8e8ee;margin-bottom:10px;">Nasıl Çalışır?</p>
-      <ol>
-        <li>Figma'da karşılaştırmak istediğiniz frame'i seçin</li>
-        <li>Sağ tık → <strong>Copy link</strong></li>
-        <li>Canlı web sayfasını Chrome'da açın</li>
-        <li>Analiz sekmesine linki yapıştırıp <strong>"Karşılaştır"</strong> butonuna basın</li>
-      </ol>
-    </div>
   </div>
-
-  <div class="pn" id="pr">
-    <div id="nr" class="em"><p>Henüz sonuç yok.</p><p style="font-size:11px;margin-top:4px">Analiz sekmesinden karşılaştırma başlatın.</p></div>
-    <div id="rc" style="display:none"></div>
+  <div id="guide" class="gu">
+    <p style="font-size:13px;font-weight:700;color:#e8e8ee;margin-bottom:10px;">Nasıl Çalışır?</p>
+    <ol>
+      <li>Figma'da karşılaştırmak istediğiniz frame'i seçin</li>
+      <li>Sağ tık → <strong>Copy link</strong></li>
+      <li>Canlı web sayfasını Chrome'da açın</li>
+      <li>Linki yapıştırıp <strong>"Karşılaştır"</strong> butonuna basın</li>
+    </ol>
   </div>
-
-  <div class="pn" id="ps">
-    <div class="sc">
-      <div class="gr">
-        <label class="lb">Figma Access Token</label>
-        <div class="tw">
-          <input type="password" id="fi" class="ip" placeholder="figd_xxxxxxxxxxxxxxxx"/>
-          <button class="te" id="fe"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 3C4.5 3 2.3 4.5 1 7c1.3 2.5 3.5 4 6 4s4.7-1.5 6-4c-1.3-2.5-3.5-4-6-4z" stroke="#606078" stroke-width="1.2"/><circle cx="7" cy="7" r="2" stroke="#606078" stroke-width="1.2"/></svg></button>
-        </div>
-      </div>
-      <div class="sa"><button class="bt bts" id="fs">Kaydet</button><button class="btd" id="fd">Sil</button></div>
-      <div id="fst" class="bn bw" style="display:none;margin-top:10px">—</div>
-    </div>
-    <div class="sc">
-      <div class="gr">
-        <label class="lb">Gemini API Key</label>
-        <div class="tw">
-          <input type="password" id="gi" class="ip" placeholder="AIzaSy..."/>
-          <button class="te" id="ge"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 3C4.5 3 2.3 4.5 1 7c1.3 2.5 3.5 4 6 4s4.7-1.5 6-4c-1.3-2.5-3.5-4-6-4z" stroke="#606078" stroke-width="1.2"/><circle cx="7" cy="7" r="2" stroke="#606078" stroke-width="1.2"/></svg></button>
-        </div>
-      </div>
-      <div class="sa"><button class="bt bts" id="gs">Kaydet</button><button class="btd" id="gd">Sil</button></div>
-      <div id="gst" class="bn bw" style="display:none;margin-top:10px">—</div>
-    </div>
-  </div>
+  <div id="rc" class="results-section"></div>
 </div>
 
 <script src="sidepanel.js"></script>
